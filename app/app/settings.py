@@ -20,10 +20,23 @@ DJANGO_SYSTEM_APPS = [
 ]
 
 CUSTOM_USER_APPS = [
-    'users.apps.UsersConfig'
+    'users.apps.UsersConfig',
+    'comments.apps.CommentsConfig',
+    'reactions.apps.ReactionsConfig',
+    'subscriptions.apps.SubscriptionsConfig',
+    'videos.apps.VideosConfig',
+    'rest_framework', # DRF
+    'drf_spectacular', # DRF-Spectacular
 ]
 
+# docker-compose run --rm app sh -c 'python manage.py makemigrations'
+# docker-compose run --rm app sh -c 'python manage.py migrate'
+
 INSTALLED_APPS = DJANGO_SYSTEM_APPS + CUSTOM_USER_APPS
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
