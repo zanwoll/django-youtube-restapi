@@ -5,7 +5,7 @@ from users.serializers import UserInfoSerializer
 from reactions.models import Reaction
 
 
-class VideoListSerializer(ModelSerializer):
+class VideoListSerializer(serializers.ModelSerializer):
     
     user = UserInfoSerializer(read_only=True)
     
