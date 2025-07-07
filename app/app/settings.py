@@ -3,11 +3,12 @@ import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-k2+^bw#-6dmk04yo(f4s7teyw!(bp1fh8xpel_nig4bww251dq'
 
-DEBUG = True
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'test')
 
-ALLOWED_HOSTS = []
+DEBUG = bool(int(os.environ.get('DEBUG', 0))) # 0: False
+
+ALLOWED_HOSTS = ['*']
 
 DJANGO_SYSTEM_APPS = [
     'django.contrib.admin',
@@ -122,3 +123,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
+
+STATIC_URL = '/static/static/'
+MEDIA_URL = '/static/media/'
+
+MEDIA_ROOT = '/vol/web/media'
+STATIC_ROOT = '/vol/web/static'
